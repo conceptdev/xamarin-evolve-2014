@@ -13,8 +13,6 @@ namespace Todo
 		ListView listView;
 		public TodoListPage ()
 		{
-			Title = AppResources.ApplicationTitle; // "Todo";
-
 			listView = new ListView { RowHeight = 40 };
 			listView.ItemTemplate = new DataTemplate (typeof (TodoItemCell));
 
@@ -91,11 +89,17 @@ namespace Todo
 				ToolbarItems.Add (tbi2);
 			}
 
+            ToolbarItems.Add(new ToolbarItem("Change Language", null, async () => {
+                var page = new LanguageSelectionXaml();
+                await Navigation.PushAsync(page);
+            }, 0, 0));
+
 		}
 
 		protected override void OnAppearing ()
 		{
 			base.OnAppearing ();
+            Title = AppResources.ApplicationTitle; // "Todo";
 			listView.ItemsSource = App.Database.GetItems ();
 		}
 	}
