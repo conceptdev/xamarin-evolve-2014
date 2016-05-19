@@ -7,6 +7,8 @@ namespace Todo
 		string GetCurrent();
 
 		void SetLocale();
+
+        void SetLocale(LocaleItemWithCultureCode localeItem);
 	}
 }
 

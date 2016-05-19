@@ -44,6 +44,16 @@ namespace Todo.Android
 
 			return netLocale;
 		}
+
+        public void SetLocale(LocaleItemWithCultureCode cultureCode)
+        {
+            Locale locale = String.IsNullOrEmpty(cultureCode.CountryCode) ? new Locale(cultureCode.LanguageCode) : new Locale(cultureCode.LanguageCode, cultureCode.CountryCode);
+            Locale.Default = locale;
+            var config = new global::Android.Content.Res.Configuration();
+            config.Locale = locale;
+            var context = global::Android.App.Application.Context;
+            context.Resources.UpdateConfiguration(config, context.Resources.DisplayMetrics);
+        }
 	}
 }
 
